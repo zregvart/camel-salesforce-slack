@@ -92,7 +92,7 @@ Allow access to the application, and you'll end up on a page with
 You can regenerate the generated DTOs in `src/generated/java` by
 running the `camel-salesforce-maven-plugin`:
 
-    $ ./mvnw org.apache.camel.maven:camel-salesforce-maven-plugin:generate \
+    $ ./mvnw -Pregenerate \
       -DcamelSalesforce.clientId=<OAuth consumer key> \
       -DcamelSalesforce.clientSecret=<OAuth consumer secret> \
       -DcamelSalesforce.userName=<Salesforce username> \
