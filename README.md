@@ -20,12 +20,12 @@ haven't already.
 
 To run set the environment variables:
 
-| Variable name                           | Value                      |
-|-----------------------------------------|----------------------------|
-| CAMEL_COMPONENT_SALESFORCE_CLIENTID     | OAuth Consumer Key         |
-| CAMEL_COMPONENT_SALESFORCE_CLIENTSECRET | OAuth Consumer Secret      |
-| CAMEL_COMPONENT_SALESFORCE_REFRESHTOKEN | OAuth Refresh Token        |
-| CAMEL_COMPONENT_SLACK_WEBHOOKURL        | Slack Incoming WebHook URL |
+| Variable name           | Value                      |
+|-------------------------|----------------------------|
+| SALESFORCE_CLIENTID     | OAuth Consumer Key         |
+| SALESFORCE_CLIENTSECRET | OAuth Consumer Secret      |
+| SALESFORCE_REFRESHTOKEN | OAuth Refresh Token        |
+| SLACK_WEBHOOKURL        | Slack Incoming WebHook URL |
 
 And run:
 
