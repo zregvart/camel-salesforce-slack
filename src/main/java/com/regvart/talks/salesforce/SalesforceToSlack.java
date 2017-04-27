@@ -15,9 +15,13 @@
  */
 package com.regvart.talks.salesforce;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Component;
 
 /**
  * Simple Spring Boot application that demonstrates the usage of Apache Camel
@@ -37,7 +41,7 @@ public class SalesforceToSlack {
 
     // Uncomment if you wish to use Java to configure the route
     // don't forget to add `import org.springframework.stereotype.Component;`
-    // @Component
+    @Component
     class SalesforceToSlackRoute extends RouteBuilder {
 
         @Override
@@ -57,7 +61,9 @@ public class SalesforceToSlack {
 
                     // use the Simple language to transform the received Data
                     // Transfer Object to Slack message format
+                    .log("Received from Salesforce: ${body}")
                     .transform(simple("A new Lead created <https://eu11.salesforce.com/${body.id}|${body.name}>"))
+                    .log("Sending to Slack: ${body}")
 
                     .to("slack" // use the Slack component auto configured from
                                 // camel-slack-starter
@@ -68,6 +74,19 @@ public class SalesforceToSlack {
     }
 
     public static void main(final String[] args) {
+        final String missing = Stream
+            .of("SALESFORCE_CLIENTID", "SALESFORCE_CLIENTSECRET", "SALESFORCE_REFRESHTOKEN", "SLACK_WEBHOOKURL")
+            .filter(e -> {
+                final String val = System.getenv(e);
+                return val == null || val.isEmpty();
+            }).collect(Collectors.joining(", "));
+
+        if (!missing.isEmpty()) {
+            System.err
+                .println("Missing environmnent entries: " + missing + ". Consult the README.md on how to set those.");
+            System.exit(1);
+        }
+
         SpringApplication.run(SalesforceToSlack.class, args);
     }
 
