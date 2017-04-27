@@ -31,8 +31,16 @@
 
   <properties>
     <spring-boot.version>1.5.3.RELEASE</spring-boot.version>
-    <camel.version>2.19.0-SNAPSHOT</camel.version>
+    <camel.version>2.19.0</camel.version>
   </properties>
+
+  <repositories>
+    <repository>
+      <!-- we are using unreleased (staged) version of Camel 2.19, due to be released very soon -->
+      <id>camel-2.19-staging</id>
+      <url>https://repository.apache.org/content/repositories/orgapachecamel-1073/</url>
+    </repository>
+  </repositories>
 
   <dependencyManagement>
     <dependencies>
