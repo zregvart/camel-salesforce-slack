@@ -34,14 +34,6 @@
     <camel.version>2.19.0</camel.version>
   </properties>
 
-  <repositories>
-    <repository>
-      <!-- we are using unreleased (staged) version of Camel 2.19, due to be released very soon -->
-      <id>camel-2.19-staging</id>
-      <url>https://repository.apache.org/content/repositories/orgapachecamel-1073/</url>
-    </repository>
-  </repositories>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -150,3 +142,4 @@
   </profiles>
 
 </project>
+
